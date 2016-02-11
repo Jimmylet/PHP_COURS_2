@@ -1,4 +1,5 @@
 <?php
+
 /**
  * _selectBookForm.php
  * Créé par : Jimmy Letecheur
@@ -6,11 +7,17 @@
  */
 ?>
 
+<?php if(isset($errors['invalidISBN'])): ?>
+<div>
+    <p><?php echo $errors['invalidISBN']; ?></p>
+</div>
+<?php endif ?>
+
 <form method="get" action="index.php" id="bookform">
-    <select name="booklist" form="bookform">
-      <option value="201323533X">Twilight - Tome 1 : Fascination</option>
-      <option value="2013223404">Twilight - Tome 2 : Tentation</option>
-      <option value="2013224591">Twilight - Tome 3 : Hésitation</option>
+    <select name="book">
+      <?php foreach ($books as $someBook) : ?>
+      <option value="<?php echo $someBook[0]; ?>"><?php echo $someBook[1]; ?></option>
+      <?php endforeach; ?>
     </select>
     <input type="submit" value="Me montrer ce livre" />
 </form>
