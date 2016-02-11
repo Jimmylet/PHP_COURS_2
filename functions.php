@@ -40,3 +40,25 @@
         return null;
     }
 
+    function updateCSVFile($book, $books)
+    {
+        $i = 0;
+        $nbBooks = count($books);
+        while(( $i < $nbBooks -1) && ($book[0] != $books[$i][0])) {
+            $i++;
+        }
+        $books[$i] = $book;
+
+        //$books[] = $book;
+
+        $handle = fopen(FILENAME, 'w');
+
+        //Ecrire dans le fichier avec fputcsv
+        $i = 0;
+        while($i < $nbBooks){
+            fputcsv($handle, $books[$i], ';');
+            $i++;
+        }
+
+        fclose($handle);
+    }

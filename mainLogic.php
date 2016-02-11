@@ -19,4 +19,18 @@
             $errors['invalidISBN'] = 'Le livre demandé n’existe pas';
         }
     }
+
+    if(isset($_POST['rating']) && isset($_POST['isbn'])) {
+        $isbn = $_POST['isbn'];
+        $rating = intval($_POST['rating']);
+        $book = getBookArrayFromISBN($isbn, $books);
+        if(!is_null($book)) {
+            $book[4] = $rating;
+            $view = '_singleBook.php';
+            $pageName = $book[1];
+            updateCSVFile($book,$books);
+        }else{
+            $errors['invalidISBN'] = 'Le livre demandé n’éxiste pas';
+        }
+    }
 ?>

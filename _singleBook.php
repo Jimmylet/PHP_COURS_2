@@ -10,6 +10,7 @@
         </ul>
     </div>
 </div>
+<?php include '_changeRatingForm.php'; ?>
 
 
 
